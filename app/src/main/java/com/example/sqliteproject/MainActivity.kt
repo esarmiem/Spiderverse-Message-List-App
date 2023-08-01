@@ -1,5 +1,6 @@
 package com.example.sqliteproject
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,8 +19,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -57,13 +61,32 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SqliteProjectTheme {
-                MyMessages(messages)
+                MyApp()
             }
         }
     }
 }
 
 data class MyMessage(val title: String, val body: String)
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyApp() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("Heroes 🦸")
+                }
+            )
+        },
+    ) {
+        Column(modifier = Modifier.padding(top = 64.dp)) {
+            MyMessages(messages)
+        }
+    }
+}
 
 @Composable
 fun MyMessages(messages: List<MyMessage>) {
@@ -89,7 +112,7 @@ fun MyComponent(message: MyMessage) {
 fun MyImage() {
     Image(
         painter = painterResource(R.drawable.spiderman),
-        contentDescription = "Imagen de un gato",
+        contentDescription = "Imagen de spiderman",
         modifier = Modifier
             .size(40.dp)
             .clip(CircleShape)
@@ -131,7 +154,7 @@ fun MyText(text: String, color: Color, lines: Int = Int.MAX_VALUE) {
 @Composable
 fun PreviewComponent() {
     SqliteProjectTheme {
-        MyMessages(messages)
+        MyApp()
     }
 }
 
