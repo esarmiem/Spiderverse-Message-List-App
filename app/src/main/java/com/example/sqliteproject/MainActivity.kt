@@ -19,16 +19,16 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -79,25 +79,29 @@ fun MyApp() {
         topBar = {
             TopAppBar(
                 title = {
-                    Text("🕷️ Spiderverse 🕸️")
+                    Text("Spiderverse 🕸️")
                 }
             )
         },
-        bottomBar = { // Aquí es donde agregas la barra de navegación
-            BottomNavigation {
+        bottomBar = {
+            BottomNavigation(
+                backgroundColor = (MaterialTheme.colorScheme.background), // Set the desired background color here
+                contentColor = MaterialTheme.colorScheme.primary // Set the desired content color here
+            ) {
+                // Add your BottomNavigationItems here
                 BottomNavigationItem(
-                    icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                    label = { Text("Favorito 1") },
+                    icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+                    label = { Text("home")},
                     selected = false,
                     onClick = {}
                 )
-                BottomNavigationItem(
+                /*BottomNavigationItem(
                     icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                    label = { Text("Favorito 2") },
+                    label = { Text("fav") },
                     selected = false,
                     onClick = {}
-                )
-                // Puedes agregar más items aquí...
+                )*/
+                // Add more BottomNavigationItems if needed
             }
         }
     ) {
